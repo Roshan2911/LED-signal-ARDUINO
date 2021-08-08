@@ -1,0 +1,162 @@
+int signal1[3]={8,9,10};//signal 1 with red, yellow and green as 8,9,10 respectively
+int signal2[3]={5,6,7};//signal 2 with red, yellow and green as 5,6,7 respectively
+int signal3[3]={2,3,4};//signal 3 with red, yellow and green as 2,3,4 respectively
+int signal4[3]={11,12,13};//signal 4 with red, yellow and green as 11,12,13 respectively
+int time=3;
+void setup()
+{
+  Serial.begin(9600); 
+  Serial.print("Time slot 1:- 3am to 6am, Light traffic");
+  Serial.print("Time slot 2:- 6am to 9am, Medium traffic");
+  Serial.print("Time slot 3:- 9am to 9pm, Heavy traffic");
+  Serial.print("Time slot 4:- 9pm to 3am, Medium traffic");
+  Serial.print("Enter the time slot:-");
+  while(Serial.available()==0){}
+  time=Serial.parseInt();
+  for(int i=0;i<3;i++)
+  {
+    pinMode(signal1[i],OUTPUT);
+    pinMode(signal2[i],OUTPUT);  
+    pinMode(signal3[i],OUTPUT);
+    pinMode(signal4[i],OUTPUT);
+  }
+}
+void loop()
+{
+  if(time==1)
+  {//setting yellow of signal 1,2,3,4 to flicker with a delay of 1000 ms
+    digitalWrite(signal1[1], HIGH);
+    digitalWrite(signal2[1], HIGH);
+    digitalWrite(signal3[1], HIGH);
+    digitalWrite(signal4[1], HIGH);
+    delay(1000);
+    digitalWrite(signal1[1], LOW);
+    digitalWrite(signal2[1], LOW);
+    digitalWrite(signal3[1], LOW);
+    digitalWrite(signal4[1], LOW);
+    delay(1000);
+  }
+  else if(time==2)
+  {//setting signal 1 green and signal 2,3,4 red to high
+    digitalWrite(signal1[0], LOW);
+    digitalWrite(signal1[2], HIGH);
+    digitalWrite(signal2[0], HIGH);
+    digitalWrite(signal3[0], HIGH);
+    digitalWrite(signal4[0], HIGH);
+    delay(3000);
+    //setting signal 1 green to low and yellow to high
+    digitalWrite(signal1[2], LOW);
+    digitalWrite(signal1[1], HIGH);
+    delay(1000);
+    //setting signal 2 red to low and green to high, signal 1,3,4 red to high
+    digitalWrite(signal2[0], LOW);
+    digitalWrite(signal2[2], HIGH);
+    digitalWrite(signal1[0], HIGH);
+    digitalWrite(signal3[0], HIGH);
+    digitalWrite(signal4[0], HIGH);
+    delay(3000);
+    //setting signal 2 green to low and yellow high
+    digitalWrite(signal2[2], LOW);
+    digitalWrite(signal2[1], HIGH);
+    delay(1000);
+    //setting signal 3 red to low and green high, signal 1,2,4 red to high
+    digitalWrite(signal3[0], LOW);
+    digitalWrite(signal3[2], HIGH);
+    digitalWrite(signal1[0], HIGH);
+    digitalWrite(signal2[0], HIGH);
+    digitalWrite(signal4[0], HIGH);
+    //setting signal 3 green to low and yellow to high
+    delay(3000);
+    digitalWrite(signal3[2], LOW);
+    digitalWrite(signal3[1], HIGH);
+    delay(1000);
+    //setting signal 4 red to low and green high, signal 1,2,3 red to high
+    digitalWrite(signal4[0], LOW);
+    digitalWrite(signal4[2], HIGH);
+    digitalWrite(signal1[0], HIGH);
+    digitalWrite(signal2[0], HIGH);
+    digitalWrite(signal3[0], HIGH);
+    delay(3000);
+    //setting signal 4 green to low and yellow to high
+    digitalWrite(signal4[2], LOW);
+    digitalWrite(signal4[1], HIGH);
+    delay(1000);
+  }
+    
+   else if(time==3)
+   {//setting signal 2, 4 green to high, signal 1,3 red to high 
+    digitalWrite(signal2[0], LOW);
+    digitalWrite(signal4[0], LOW); 
+    digitalWrite(signal2[2], HIGH);
+    digitalWrite(signal4[2], HIGH);
+    digitalWrite(signal1[0], HIGH);
+    digitalWrite(signal3[0], HIGH);
+    delay(3000);
+    //setting signal 2,4 green low and yellow to high
+    digitalWrite(signal2[2], LOW);
+    digitalWrite(signal4[2], LOW);
+    digitalWrite(signal2[1], HIGH);
+    digitalWrite(signal4[1], HIGH);
+    delay(1000);
+    //setiing signal 1,3 red to low and green to high, signal 2,4 red to high
+    digitalWrite(signal1[0], LOW);
+    digitalWrite(signal3[0], LOW);
+    digitalWrite(signal1[2], HIGH);
+    digitalWrite(signal3[2], HIGH);
+    digitalWrite(signal2[0], HIGH);
+    digitalWrite(signal4[0], HIGH); 
+    delay(3000);
+    //setting signal 1,3 green to low and yellow to high 
+    digitalWrite(signal1[2], LOW);
+    digitalWrite(signal3[2], LOW);
+    digitalWrite(signal1[1], HIGH);
+    digitalWrite(signal3[1], HIGH);     
+    delay(1000);
+   }
+   else if(time==4)
+   {//setting signal 1 green and signal 2,3,4 red to high
+    digitalWrite(signal1[0], LOW); 
+    digitalWrite(signal1[2], HIGH);
+    digitalWrite(signal2[0], HIGH);
+    digitalWrite(signal3[0], HIGH);
+    digitalWrite(signal4[0], HIGH);
+    delay(3000);
+    //setting signal 1 green to low and yellow to high
+    digitalWrite(signal1[2], LOW);
+    digitalWrite(signal1[1], HIGH);
+    delay(1000);
+    //setting signal 2 red to low and green to high, signal 1,3,4 red to high
+    digitalWrite(signal2[0], LOW);
+    digitalWrite(signal2[2], HIGH);
+    digitalWrite(signal1[0], HIGH);
+    digitalWrite(signal3[0], HIGH);
+    digitalWrite(signal4[0], HIGH);
+    delay(3000);
+    //setting signal 2 green to low and yellow high
+    digitalWrite(signal2[2], LOW);
+    digitalWrite(signal2[1], HIGH);
+    delay(1000);
+    //setting signal 3 red to low and green high, signal 1,2,4 red to high
+    digitalWrite(signal3[0], LOW);
+    digitalWrite(signal3[2], HIGH);
+    digitalWrite(signal1[0], HIGH);
+    digitalWrite(signal2[0], HIGH);
+    digitalWrite(signal4[0], HIGH);
+    //setting signal 3 green to low and yellow to high
+    delay(3000);
+    digitalWrite(signal3[2], LOW);
+    digitalWrite(signal3[1], HIGH);
+    delay(1000);
+    //setting signal 4 red to low and green high, signal 1,2,3 red to high
+    digitalWrite(signal4[0], LOW);
+    digitalWrite(signal4[2], HIGH);
+    digitalWrite(signal1[0], HIGH);
+    digitalWrite(signal2[0], HIGH);
+    digitalWrite(signal3[0], HIGH);
+    delay(3000);
+    //setting signal 4 green to low and yellow to high
+    digitalWrite(signal4[2], LOW);
+    digitalWrite(signal4[1], HIGH);
+    delay(1000);
+  }
+}
